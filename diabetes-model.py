@@ -5,6 +5,21 @@ import numpy as np
 import pickle 
 from sklearn.preprocessing import StandardScaler
 
+# connection to mongo db
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+uri = "mongodb+srv://zahid:zahid1234@cluster0.sltur.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# create database
+db = client['diabetes']
+
+# create collection
+collection = db['diabetes_pred']
+
 # load the pickle file
 def load_model(model_name):
     with open(model_name, 'rb') as file:
@@ -61,9 +76,13 @@ def main():
 
         # Make Prediction
         prediction = predict_data(user_data, model_name)
-        predicted_value = float(prediction[0])  # Convert to float
+        predicted_value = round(float(prediction[0],4))  # Convert to float
         
         st.success(f'Your prediction result is {prediction}')
+        
+        # add to the collection
+        user_data['prediction'] = predicted_value
+        collection.insert_one(user_data)
 
 # call the main
 if __name__ == '__main__':
