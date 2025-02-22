@@ -26,13 +26,45 @@ def predict_data(data, model_name):
     return prediction
 
 def main():
-    st.title('**Diabetics Performance Predicition**')
-    st.title('Diabetics Performance Predicition')
-    st.write('Enter your data to get a prediction for your performance')
+    st.title("Diabetes Progression Prediction")
+    model_choice = st.sidebar.radio("Choose Model", [ "Ridge Regression", "Lasso Regression"])
+    
+    st.header("Input Parameters")
+    
+    age = st.slider("Age of Patient", -0.2, 0.2, 0.0, 0.01)
+    sex = st.slider("Sex (normalized)", -0.1, 0.1, 0.0, 0.01)
+    bmi = st.slider("BMI (Body Mass Index)", -0.1, 0.2, 0.0, 0.01)
+    bp = st.slider("Blood Pressure", -0.1, 0.2, 0.0, 0.01)
+    s1 = st.slider("Serum Level 1", -0.2, 0.2, 0.0, 0.01)
+    s2 = st.slider("Serum Level 2", -0.2, 0.2, 0.0, 0.01)
+    s3 = st.slider("Serum Level 3", -0.2, 0.2, 0.0, 0.01)
+    s4 = st.slider("Serum Level 4", -0.2, 0.2, 0.0, 0.01)
+    s5 = st.slider("Serum Level 5", -0.2, 0.2, 0.0, 0.01)
+    s6 = st.slider("Serum Level 6", -0.2, 0.2, 0.0, 0.01)
     
     # age	sex	bmi	bp	s1	s2	s3	s4	s5	s6	
-    #age = st.number_input("age", min_value=5, max_value=100, value=5)
+    user_data = {
+        "AGE": age,
+        "SEX": sex,
+        "BMI": bmi,
+        "BP": bp,
+        "S1": s1,
+        "S2": s2,
+        "S3": s3,
+        "S4": s4,
+        "S5": s5,
+        "S6": s6
+    }
     
+    if st.button("Predict") :
+        # model selection
+        model_name = 'diabetes_ridge_model.pkl' if model_choice == 'Ridge Regression' else 'Lasso Regression'
+
+        # Make Prediction
+        prediction = predict_data(user_data, model_name)
+        predicted_value = float(prediction[0])  # Convert to float
+        
+        st.success(f'Your prediction result is {prediction}')
 
 # call the main
 if __name__ == '__main__':
