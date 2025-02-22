@@ -27,9 +27,13 @@ def predict_data(data, model_name):
 
 def main():
     st.title('**Diabetics Performance Predicition**')
+    st.title('Diabetics Performance Predicition')
     st.write('Enter your data to get a prediction for your performance')
     
     # age	sex	bmi	bp	s1	s2	s3	s4	s5	s6	
     #age = st.number_input("age", min_value=5, max_value=100, value=5)
     
 
+# call the main
+if __name__ == '__main__':
+    main()
