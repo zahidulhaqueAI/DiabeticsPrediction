@@ -57,7 +57,7 @@ def main():
     
     if st.button("Predict") :
         # model selection
-        model_name = 'diabetes_ridge_model.pkl' if model_choice == 'Ridge Regression' else 'Lasso Regression'
+        model_name = 'diabetes_ridge_model.pkl' if model_choice == 'Ridge Regression' else 'diabetes_lasso_model.pkl'
 
         # Make Prediction
         prediction = predict_data(user_data, model_name)
