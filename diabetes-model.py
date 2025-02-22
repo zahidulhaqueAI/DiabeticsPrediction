@@ -13,7 +13,6 @@ def load_model(model_name):
 
 # processing for model
 def prepossing_input_data(data, scaler):
-    data['sex'] = data['sex'].map({'Male' : 1, "Female" : 2})
     df = pd.DataFrame([data])
     df_transformed = scaler.transform(df)
     return df_transformed
