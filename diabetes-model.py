@@ -76,12 +76,17 @@ def main():
 
         # Make Prediction
         prediction = predict_data(user_data, model_name)
-        predicted_value = float(prediction[0],4)  # Convert to float
+        predicted_value = round(float(prediction[0]) ,4)  # Convert to float
         
         st.success(f'Your prediction result is {prediction}')
         
         # add to the collection
+        # get the model selected
+        model_sel = 'Ridge' if model_name == 'diabetes_ridge_model.pkl' else 'Lasso'
+        
         user_data['prediction'] = predicted_value
+        user_data['Model Selected'] = model_sel
+        
         collection.insert_one(user_data)
 
 # call the main
