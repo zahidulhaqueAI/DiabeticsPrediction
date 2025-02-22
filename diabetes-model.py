@@ -76,7 +76,7 @@ def main():
 
         # Make Prediction
         prediction = predict_data(user_data, model_name)
-        predicted_value = round(float(prediction[0],4))  # Convert to float
+        predicted_value = float(prediction[0],4)  # Convert to float
         
         st.success(f'Your prediction result is {prediction}')
         
