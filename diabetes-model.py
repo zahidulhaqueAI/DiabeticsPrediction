@@ -43,17 +43,17 @@ def main():
     
     # age	sex	bmi	bp	s1	s2	s3	s4	s5	s6	
     user_data = {
-        "AGE": age,
-        "SEX": sex,
-        "BMI": bmi,
-        "BP": bp,
-        "S1": s1,
-        "S2": s2,
-        "S3": s3,
-        "S4": s4,
-        "S5": s5,
-        "S6": s6
-    }
+            "age": age,
+            "sex": sex,
+            "bmi": bmi,
+            "bp": bp,
+            "s1": s1,
+            "s2": s2,
+            "s3": s3,
+            "s4": s4,
+            "s5": s5,
+            "s6": s6
+        }
     
     if st.button("Predict") :
         # model selection
